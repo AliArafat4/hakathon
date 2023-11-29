@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/data_info_model.dart';
 

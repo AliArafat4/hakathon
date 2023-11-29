@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon_tuwaiq/bloc/qr_scan_cubit/qr_scan_cubit.dart';

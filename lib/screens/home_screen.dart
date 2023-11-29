@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackathon_tuwaiq/bloc/profile_cubit/profile_cubit.dart';
 import 'package:hackathon_tuwaiq/bloc/qr_generate_cubit/qr_generator_cubit.dart';
 import 'package:hackathon_tuwaiq/screens/auth/components/auth_button.dart';
 import 'package:hackathon_tuwaiq/screens/profile_screen.dart';

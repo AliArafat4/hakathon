@@ -1,11 +1,10 @@
-import 'package:flutter/animation.dart';
 import 'package:hackathon_tuwaiq/main.dart';
 import 'package:hackathon_tuwaiq/models/user_info_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SupaBaseDB {
-  late final supaBaseInstance;
+  late final SupabaseClient supaBaseInstance;
 
   initializeSupa() async {
     await Supabase.initialize(

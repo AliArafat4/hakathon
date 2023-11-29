@@ -56,7 +56,8 @@ class ProfileScreen extends StatelessWidget {
                         builder: (context) => SignInScreen(),
                       ),
                       (route) => false);
-                })
+                }),
+            SizedBox(height: MediaQuery.of(context).size.height * .05),
           ],
         ),
       ),

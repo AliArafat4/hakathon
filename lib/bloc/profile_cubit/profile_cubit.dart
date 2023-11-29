@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon_tuwaiq/db/supabase_db.dart';
 import 'package:hackathon_tuwaiq/models/user_info_model.dart';
-import 'package:meta/meta.dart';
 
 part 'profile_state.dart';
 

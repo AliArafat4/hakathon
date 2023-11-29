@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class DataInfoModel {
   String? userId, studentId, email, time, name, courseName;
   DataInfoModel(
