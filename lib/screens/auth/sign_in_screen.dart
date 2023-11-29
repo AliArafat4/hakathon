@@ -5,7 +5,7 @@ import 'package:hackathon_tuwaiq/screens/auth/components/auth_button.dart';
 import 'package:hackathon_tuwaiq/screens/auth/components/auth_loading.dart';
 import 'package:hackathon_tuwaiq/screens/auth/components/auth_text_field.dart';
 import 'package:hackathon_tuwaiq/screens/home_screen.dart';
-import 'package:hackathon_tuwaiq/screens/qr_scanner_screen.dart';
+import 'package:hackathon_tuwaiq/screens/scan_qr/qr_scanner_screen.dart';
 
 import 'components/show_snack_bar.dart';
 
@@ -22,18 +22,9 @@ class SignInScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * .1),
-          GestureDetector(
-            child: Image.asset(
-              "assets/images/tuwaiq_logo_no_bg.png",
-              scale: 2,
-            ),
-            onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const QrScannerScreen(),
-                  ));
-            },
+          Image.asset(
+            "assets/images/tuwaiq_logo_no_bg.png",
+            scale: 2,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * .065),
           AuthTextField(
@@ -92,8 +83,12 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
             ),
-            onTap: () {
-              //TODO:
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QrScannerScreen(),
+                  ));
             },
           )
         ],

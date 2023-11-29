@@ -7,11 +7,15 @@ class ProfileInitial extends ProfileState {
 }
 
 class ProfileInfoState extends ProfileState {
-  final String email, id, name, course;
+  final String email, userId, studentId, name, course;
+  final List<AttendanceRecord> attendanceRecord;
 
-  ProfileInfoState(
-      {required this.email,
-      required this.id,
-      required this.name,
-      required this.course});
+  ProfileInfoState({
+    required this.email,
+    required this.userId,
+    required this.studentId,
+    required this.name,
+    required this.course,
+    required this.attendanceRecord,
+  });
 }

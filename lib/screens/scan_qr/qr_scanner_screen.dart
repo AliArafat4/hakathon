@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon_tuwaiq/bloc/qr_scan_cubit/qr_scan_cubit.dart';
 import 'package:hackathon_tuwaiq/db/supabase_db.dart';
+import 'package:hackathon_tuwaiq/screens/scan_qr/components/user_data.dart';
 
 class QrScannerScreen extends StatelessWidget {
   const QrScannerScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class QrScannerScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: BlocBuilder<QrScanCubit, QrScanState>(
+            child: BlocConsumer<QrScanCubit, QrScanState>(
               builder: (context, state) {
                 state is QrScanInitial
                     ? context.read<QrScanCubit>().scanQR()
@@ -25,42 +26,25 @@ class QrScannerScreen extends StatelessWidget {
                           ? UserDataWidget(state: state)
                           : const SizedBox(),
                       ElevatedButton(
-                          onPressed: () async {
-                            await context.read<QrScanCubit>().scanQR();
-                            if (state is QrScanDataState) {
-                              SupaBaseDB().markStudentAttendance(
-                                  userId: state.data.userId!,
-                                  studentId: state.data.studentId);
-                            }
+                          onPressed: () {
+                            context.read<QrScanCubit>().scanQR();
                           },
-                          child: const Text("Scan"))
+                          child: const Text("Scan")),
                     ],
                   ),
                 );
+              },
+              listener: (BuildContext context, QrScanState state) async {
+                if (state is QrScanDataState) {
+                  await SupaBaseDB().markStudentAttendance(
+                      userId: state.data.userId!,
+                      studentId: state.data.studentId);
+                }
               },
             ),
           )
         ],
       ),
-    );
-  }
-}
-
-class UserDataWidget extends StatelessWidget {
-  const UserDataWidget({
-    super.key,
-    required this.state,
-  });
-  final QrScanDataState state;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("Name: ${state.data.name}"),
-        Text("Email: ${state.data.email}"),
-        Text("Registered in${state.data.courseName} course"),
-      ],
     );
   }
 }

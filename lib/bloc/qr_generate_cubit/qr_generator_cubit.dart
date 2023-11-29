@@ -9,15 +9,20 @@ class QrGeneratorCubit extends Cubit<QrGeneratorState> {
 
   generateQrEvent() async {
     emit(QrLoadingState(isLoading: true));
-    final UserInfoModel info = await SupaBaseDB().getCurrentUser();
-    emit(QrLoadingState(isLoading: false));
-    emit(GenerateState(
-      email: info.email!,
-      userId: info.userId!,
-      studentId: "${info.studentId!}",
-      time: info.time!,
-      course: info.courseName!,
-      name: info.name!,
-    ));
+    try {
+      final UserInfoModel info = await SupaBaseDB().getCurrentUser();
+      emit(QrLoadingState(isLoading: false));
+      emit(GenerateState(
+        email: info.email!,
+        userId: info.userId!,
+        studentId: "${info.studentId!}",
+        time: info.time!,
+        course: info.courseName!,
+        name: info.name!,
+      ));
+    } catch (err) {
+      print(err);
+      emit(QrLoadingState(isLoading: false));
+    }
   }
 }

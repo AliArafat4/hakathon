@@ -76,4 +76,11 @@ class SupaBaseDB {
       },
     ).eq('userId', userId);
   }
+
+  getAttendanceRecord({required studentId}) async {
+    final client = Supabase.instance.client;
+    final studentInfo =
+        await client.from("attendance").select("*").eq('student_id', studentId);
+    return studentInfo;
+  }
 }

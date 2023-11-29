@@ -11,7 +11,6 @@ class QrScanCubit extends Cubit<QrScanState> {
 
   Future<dynamic> scanQR() async {
     String barcodeScanRes;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
@@ -19,11 +18,14 @@ class QrScanCubit extends Cubit<QrScanState> {
       List<String> data =
           barcodeScanRes.substring(1, barcodeScanRes.length - 1).split(",");
 
-      if (data.isNotEmpty) {
+      if (data.length > 1) {
         final ls = DataInfoModel.fromJson(data);
         emit(QrScanDataState(data: ls));
       }
+
+      Future.delayed(const Duration(seconds: 3), () => emit(QrScanInitial()));
     } on PlatformException {
+      Future.delayed(const Duration(seconds: 3), () => emit(QrScanInitial()));
       return barcodeScanRes = 'Failed to get platform version.';
     }
   }
