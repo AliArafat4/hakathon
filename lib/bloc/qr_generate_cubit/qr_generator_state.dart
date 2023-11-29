@@ -5,15 +5,16 @@ abstract class QrGeneratorState {}
 class QrGeneratorInitial extends QrGeneratorState {}
 
 class GenerateState extends QrGeneratorState {
-  final String email, id, course, name;
+  final String email, userId, course, name, studentId;
   final DateTime time;
 
   GenerateState({
     required this.email,
-    required this.id,
+    required this.userId,
     required this.time,
     required this.course,
     required this.name,
+    required this.studentId,
   });
 }
 

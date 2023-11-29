@@ -37,7 +37,8 @@ class HomeScreen extends StatelessWidget {
                 return state is GenerateState
                     ? QrImageView(
                         data: [
-                          (state.id),
+                          (state.userId),
+                          (state.studentId),
                           (state.name),
                           (state.email),
                           (state.course),

@@ -14,7 +14,8 @@ class QrGeneratorCubit extends Cubit<QrGeneratorState> {
     emit(QrLoadingState(isLoading: false));
     emit(GenerateState(
       email: info.email!,
-      id: info.id!,
+      userId: info.userId!,
+      studentId: "${info.studentId!}",
       time: info.time!,
       course: info.courseName!,
       name: info.name!,

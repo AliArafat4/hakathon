@@ -10,7 +10,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   loadUserInfo() async {
     final UserInfoModel user = await SupaBaseDB().getCurrentUser();
     emit(ProfileInfoState(
-        id: user.id!,
+        id: user.userId!,
         email: user.email!,
         name: user.name!,
         course: user.courseName!));

@@ -20,6 +20,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * .1),
@@ -68,12 +69,33 @@ class SignInScreen extends StatelessWidget {
                   ? showSnackBar(context: context, message: state.errorMsg)
                   : const SizedBox();
               state is AuthLoginSuccessState
-                  ? Navigator.push(
+                  ? Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const HomeScreen(),
-                      ))
+                      ),
+                      (route) => false,
+                    )
                   : const SizedBox();
+            },
+          ),
+          GestureDetector(
+            child: const Padding(
+              padding: EdgeInsets.only(right: 16.0, top: 8),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  "Are You an Admin?",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                  ),
+                ),
+              ),
+            ),
+            onTap: () {
+              //TODO:
             },
           )
         ],

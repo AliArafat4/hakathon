@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon_tuwaiq/bloc/qr_scan_cubit/qr_scan_cubit.dart';
+import 'package:hackathon_tuwaiq/db/supabase_db.dart';
 
 class QrScannerScreen extends StatelessWidget {
   const QrScannerScreen({Key? key}) : super(key: key);
@@ -23,17 +24,16 @@ class QrScannerScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       state is QrScanDataState
-                          ? Column(
-                              children: [
-                                ...List.generate(state.data.length, (index) {
-                                  return Text(state.data[index]);
-                                }),
-                              ],
-                            )
+                          ? UserDataWidget(state: state)
                           : const SizedBox(),
                       ElevatedButton(
-                          onPressed: () {
-                            context.read<QrScanCubit>().scanQR();
+                          onPressed: () async {
+                            await context.read<QrScanCubit>().scanQR();
+                            if (state is QrScanDataState) {
+                              SupaBaseDB().markStudentAttendance(
+                                  userId: state.data.userId!,
+                                  studentId: state.data.studentId);
+                            }
                           },
                           child: const Text("Scan"))
                     ],
@@ -44,6 +44,25 @@ class QrScannerScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class UserDataWidget extends StatelessWidget {
+  const UserDataWidget({
+    super.key,
+    required this.state,
+  });
+  final QrScanDataState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("Name: ${state.data.name}"),
+        Text("Email: ${state.data.email}"),
+        Text("Registered in${state.data.courseName} course"),
+      ],
     );
   }
 }

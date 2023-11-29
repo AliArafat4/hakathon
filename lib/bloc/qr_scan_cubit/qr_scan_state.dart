@@ -6,7 +6,7 @@ abstract class QrScanState {}
 class QrScanInitial extends QrScanState {}
 
 class QrScanDataState extends QrScanState {
-  final List<String> data;
+  final DataInfoModel data;
 
   QrScanDataState({required this.data});
 }

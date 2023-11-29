@@ -1,14 +1,22 @@
 class UserInfoModel {
-  String? id;
+  String? userId;
+  int? studentId;
   String? email;
   DateTime? time;
   String? name;
   String? courseName;
 
-  UserInfoModel({this.id, this.email, this.time, this.name, this.courseName});
+  UserInfoModel(
+      {this.userId,
+      this.email,
+      this.time,
+      this.name,
+      this.courseName,
+      this.studentId});
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    userId = json['user_id'];
+    studentId = json['student_id'];
     email = json['email'];
     time = json['time'];
     name = json['name'];
@@ -20,6 +28,8 @@ class UserInfoModel {
   //   data['id'] = id;
   //   data['email'] = email;
   //   data['time'] = time;
+  //   data['name'] = name;
+  //   data['course_name'] = courseName;
   //   return data;
   // }
 }
