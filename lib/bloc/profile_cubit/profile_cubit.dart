@@ -29,4 +29,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       print(err);
     }
   }
+
+  callInitialState() {
+    emit(ProfileInitial());
+  }
 }

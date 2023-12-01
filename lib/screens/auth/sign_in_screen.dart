@@ -68,29 +68,29 @@ class SignInScreen extends StatelessWidget {
                   : const SizedBox();
             },
           ),
-          GestureDetector(
-            child: const Padding(
-              padding: EdgeInsets.only(right: 16.0, top: 8),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  "Are You an Admin?",
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.blue,
-                  ),
-                ),
-              ),
-            ),
-            onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const QrScannerScreen(),
-                  ));
-            },
-          )
+          // GestureDetector(
+          //   child: const Padding(
+          //     padding: EdgeInsets.only(right: 16.0, top: 8),
+          //     child: Align(
+          //       alignment: Alignment.centerRight,
+          //       child: Text(
+          //         "Are You an Admin?",
+          //         style: TextStyle(
+          //           color: Colors.blue,
+          //           decoration: TextDecoration.underline,
+          //           decorationColor: Colors.blue,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          //   onTap: () async {
+          //     Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => const QrScannerScreen(),
+          //         ));
+          //   },
+          // )
         ],
       ),
     );

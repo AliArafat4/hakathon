@@ -13,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileCubit>().callInitialState();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -41,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                 builder: (context, state) {
                   state is ProfileInitial
                       ? context.read<ProfileCubit>().loadUserInfo()
-                      : const Text("No Record has been Found");
+                      : const SizedBox();
                   return state is ProfileInfoState
                       ? Column(
                           children: [
